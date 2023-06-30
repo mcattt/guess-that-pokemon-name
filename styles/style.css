@@ -1,0 +1,27 @@
+#splash-screen{
+    position: absolute;
+top: 10%;
+left: 15%;
+width: 70%;
+height: 80%;
+    margin: 0 auto;
+    background-color: aquamarine;
+}
+#options-screen{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    margin: 100px auto;
+    background-color: rgb(255, 140, 255);
+}
+h2{
+    margin-top: 50px;
+}
+#rules-button{
+    margin-top: 50px;
+    margin-right: 50px;
+    float: right;
+}
