@@ -2,44 +2,81 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>game</title>
-    <link rel="stylesheet" href="styles/style.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>game</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 
 <body>
-    <main>
+  <main>
 
-        <section id="splash-screen">
-            <div id="rules-wrap">
-                <button type="button" class="btn btn-info" id="rules-button">Rules</button>
-            </div>
-            <section id="options-screen">
-                <h2>Guess that pokemon (name)</h2>
-               
-                <p id="player-name-display"> </p>
-                <textarea id="player-form" placeholder="enter your name.."></textarea>
-                <button type="button" class="btn btn-dark disabled" id="join-game-button">Join</button>
-                <button type="button" class="btn btn-secondary disabled"id="start-game-button">Play</button>
-                <button type="button" class="btn btn-secondary">Change difficulty</button>
-                <button type="button" class="btn btn-secondary">Change Generation</button>
-            </section>
-        </section>
-        <section id="main-screen"></section>
-        <section id="game-over-screen"></section>
+    <section class="screen" id="splash-screen">
+      <div id="rules-wrap">
+        <button type="button" class="btn btn-info" id="rules-button">Rules</button>
+      </div>
+      <div id="options-screen">
+        <h2>Guess that pokemon (name)</h2>
+
+        <p class="player-name-display"> </p>
+        <textarea class="player-form" placeholder="enter your name.."></textarea>
+        <button type="button" class="btn btn-dark disabled join-game-button">Join</button>
+        <button type="button" class="btn btn-secondary disabled start-game-button">Play</button>
+
+        <div class="btn-group difficulty-buttons" role="group" aria-label="Basic radio toggle button group">
+          <input type="radio" class="btn-check" name="btnradio" id="btn-radio-easy" autocomplete="off" checked>
+          <label class="btn btn-primary" for="btn-radio-easy">Easy</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="btn-radio-medium" autocomplete="off">
+          <label class="btn btn-primary" for="btn-radio-medium">Medium</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="btn-radio-hard" autocomplete="off">
+          <label class="btn btn-primary" for="btn-radio-hard">Hard</label>
+        </div>
+
+
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" id="dropdown-toggle" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Dropdown button
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item">Generation 1</a></li>
+            <li> <a class="dropdown-item">Generation 2</a></li>
+            <li> <a class="dropdown-item">Generation 3</a></li>
+            <li><a class="dropdown-item">Generation 4</a></li>
+            <li> <a class="dropdown-item">Generation 5</a></li>
+            <li> <a class="dropdown-item">Generation 6</a></li>
+            <li> <a class="dropdown-item">Generation 7</a></li>
+          </ul>
+        </div>
+
+      </div>
+     </section>
+      <section class="screen" id="main-screen" style="display: none;">
+        <div class="lives-wrap">
+          <p>Lives: 5</p>
+        </div>
+        <div id="rules-wrap">
+          <button type="button" class="btn btn-info" id="rules-button">Rules</button>
+        </div>
+      
+      
+      </section>
+      <section id="game-over-screen"></section>
 
 
 
-    </main>
-    <script src="./scripts/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.js"
-        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+    crossorigin="anonymous"></script>
+  <script src="./scripts/script.js"></script>
 </body>
 
 </html>

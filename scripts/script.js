@@ -114,23 +114,44 @@ const gen8Pokemon = [
 
 
 const game = {
+   dropdownMenu:$(".dropdown-menu"),
+  difficultyButtons: $('.difficulty-buttons'),
+  currentDifficulty: "easy",
+  generation: 1,
   isRunning: false,
-  playerNameDisplay: document.getElementById('player-name-display'),
-  joinGameButton: document.getElementById('join-game-button'),
-  playerForm: document.getElementById('player-form'),
-  startGameButton: document.getElementById('start-game-button'),
+  playerNameDisplay: $('.player-name-display'),
+  joinGameButton: $('.join-game-button'),
+  playerForm: $('.player-form'),
+  startGameButton: $('.start-game-button'),
    
 
   updatePlayerName: function (playerName) {
-    this.playerNameDisplay.innerText = "Hello, Trainer "+ playerName+ "!";
+    this.playerNameDisplay.text("Hello, Trainer "+ playerName + "!");
 
-  }
+  },
+  setDifficulty: function(difficulty){
+    this.currentDifficulty = difficulty;
+
+},
+ handleDropdownChange: function(event) {
+  const selectedOption = $(event.target).text();
+  const generationNumber = parseInt(selectedOption.split(" ")[1]);
+  game.generation = generationNumber;
+  console.log("Selected Generation: " + game.generation);
+}
+
+
+
+
+
+
+
 }
 
 const playerOne = {
   name: "",
   score: 0,
-  updateName: function (playerName) {
+  updateName: function(playerName) {
     this.name =  playerName;
     game.updatePlayerName(playerName);
   }
@@ -139,21 +160,29 @@ const playerOne = {
 
 
 
+    // Function to handle dropdown selection
+
+    // Dropdown menu elements
+  
+
+    // Event listeners for dropdown items
+    game.dropdownMenu.on("click", ".dropdown-item", function(event) {
+    
+        game.handleDropdownChange(event);
+      
+    });
 
 
 
-
-
-
-game.joinGameButton.addEventListener('click', function () {
+game.joinGameButton.on('click', function () {
   if (!(playerOne.name)) {
-    const playerName = game.playerForm.value;
+    const playerName = game.playerForm.val();
     playerOne.updateName(playerName);
     game.updatePlayerName(playerName);
 
-    game.joinGameButton.classList.add('disabled');
-    game.startGameButton.classList.remove('disabled');
-    game.playerForm.value = null;
+    game.joinGameButton.addClass('disabled');
+    game.startGameButton.removeClass('disabled');
+    game.playerForm.val('null');
   }
 })
 
@@ -162,13 +191,45 @@ game.joinGameButton.addEventListener('click', function () {
 
 
 
-game.playerForm.addEventListener('keyup', function (event) {
 
-  if (game.playerForm.value !== null) {
-      game.joinGameButton.classList.remove('disabled');
+
+
+
+game.playerForm.on('keyup', function (event) {
+
+  if (game.playerForm.val() !== 'null') {
+      game.joinGameButton.removeClass('disabled');
   }
-})
+});
+
+
+
+//ask abt this, make it into one function
+
+$('#btn-radio-easy').on('click', function() {
+game.setDifficulty('easy');
+
+});
+
+
+$('#btn-radio-medium').on('click', function() {
+  game.setDifficulty('medium');
+  
+  })
+
+
+  $('#btn-radio-hard').on('click', function() {
+    game.setDifficulty('hard');
+    
+    })
 
 
 
 
+
+
+    //changing generation
+
+
+    
+    // Event listener for dropdown change

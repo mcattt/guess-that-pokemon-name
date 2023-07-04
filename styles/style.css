@@ -25,3 +25,16 @@ h2{
     margin-right: 50px;
     float: right;
 }
+
+/* [type='radio'] {
+    display: none; 
+    } */
+
+    .dropdown{
+        position: relative;
+    }
+
+
+.lives-wrap{
+    float: left;
+}
