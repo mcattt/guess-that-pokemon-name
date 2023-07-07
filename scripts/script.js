@@ -94,7 +94,7 @@ const gen7Pokemon = [
   "Rockruff",
   "Stufful",
   "Bounsweet",
-  "Jangmo-o"
+  "Decidueye"
 ];
 // Generation 8 (Galar)
 const gen8Pokemon = [
@@ -109,50 +109,124 @@ const gen8Pokemon = [
   "Chewtle",
   "Yamper"
 ];
-
+//gen 9
+const gen9Pokemon = [
+  "Sprigatito",
+  "Fuecoco",
+  "Quaxly",
+  "Lechonk",
+  "Flamigo",
+  "Clodsire",
+  "Farigiraf",
+  "Tinkaton",
+  "Wiglett",
+  "Tatsugiri"
+];
 
 
 
 const game = {
-   dropdownMenu:$(".dropdown-menu"),
+  word: '',
+  wordbank: [],
+  guess: [],
+  guessTextArea: $('.guesses-textarea'),
+  dropdownMenu: $(".dropdown-menu"),
   difficultyButtons: $('.difficulty-buttons'),
   currentDifficulty: "easy",
   generation: 1,
   isRunning: false,
   playerNameDisplay: $('.player-name-display'),
   joinGameButton: $('.join-game-button'),
+  exitButton: $('.exit-button'),
   playerForm: $('.player-form'),
   startGameButton: $('.start-game-button'),
-   
+  lives: 5,
+  livesLeftText: $('#lives-text'),
+  alphabetButtons: $('.alphabet-wrap'),
 
+
+
+  //sets player name in display
   updatePlayerName: function (playerName) {
-    this.playerNameDisplay.text("Hello, Trainer "+ playerName + "!");
+    this.playerNameDisplay.text("Hello, Trainer " + playerName + "!");
 
   },
-  setDifficulty: function(difficulty){
+  //sets difficulty
+  setDifficulty: function (difficulty) {
     this.currentDifficulty = difficulty;
 
-},
- handleDropdownChange: function(event) {
-  const selectedOption = $(event.target).text();
-  const generationNumber = parseInt(selectedOption.split(" ")[1]);
-  game.generation = generationNumber;
-  console.log("Selected Generation: " + game.generation);
+  },
+//stores the selected generation into generationNumber, which then that array of words gets stored in wordBank with function storeWords
+  handleDropdownChange: function (event) {
+    const selectedOption = $(event.target).text();
+    const generationNumber = parseInt(selectedOption.split(" ")[1]);
+    game.generation = generationNumber;
+    console.log("Selected Generation: " + game.generation);
+   
+    
+
+  },
+//switches to the current screen
+  switchScreen(currentScreen) {
+    $('.screen').hide();
+    // and show current
+    $(currentScreen).show();
+
+  },
+
+
+//sets the amount of lives based on choice, default is 5
+  setLives() {
+    if (this.currentDifficulty === 'medium') {
+      this.lives = 6;
+    }
+    else if (this.currentDifficulty === 'hard') {
+      this.lives = 7;
+    }
+    this.livesLeftText.append(this.lives);
+
+
+
+  },
+ 
+
+  handleLetterClick(event) {
+    const clickedLetter = $(event.target).text();
+    game.guess.push(clickedLetter);
+    $(event.target).prop("disabled", true);
+
+for( let i=0; i< this.word.length; i++){
+  if (clickedLetter.toLowerCase() === game.word[i].toLowerCase()) {
+    const guessTextArray = game.guessTextArea.text().split('');
+    guessTextArray[i] = game.word[i];
+    game.guessTextArea.text(guessTextArray.join(''));
+  }
+else if(clickedLetter.toLowerCase() !== game.word[i].toLowerCase() && i===(this.word.length - 1)){
+  this.lives = this.lives-1;
+  updateLives();
+//change the number in the corner
+}
+
+  } 
+
 }
 
 
+  }
 
 
 
 
 
-}
 
+
+
+//player
 const playerOne = {
   name: "",
   score: 0,
-  updateName: function(playerName) {
-    this.name =  playerName;
+  updateName: function (playerName) {
+    this.name = playerName;
     game.updatePlayerName(playerName);
   }
 }
@@ -160,20 +234,120 @@ const playerOne = {
 
 
 
-    // Function to handle dropdown selection
 
-    // Dropdown menu elements
+
+
+// Event listener for dropdown items
+
+
+
+//stores random word from the wordbank
+function chooseWord() {
+  let num = Math.floor(Math.random() * game.wordbank.length);
+  game.word = game.wordbank[num];
+}
+
+//sets the word and lives 
+function start(){
+  if (game.isRunning === true){
+    storeWords();
+    chooseWord();
+    game.setLives();
+    setupWord();
+  }
+}
+
+
+
+
+//stores the array in wordBank nased on which generation was chosen
+function storeWords(){
+  switch (game.generation) {
+    case 1:
+      game.wordbank = gen1Pokemon;
+      break;
+    case 2:
+      game.wordbank = gen2Pokemon;
+      break;
+    case 3:
+      game.wordbank = gen3Pokemon;
+      break;
+    case 4:
+      game.wordbank = gen4Pokemon;
+      break;
+    case 5:
+      game.wordbank = gen5Pokemon;
+      break;
+    case 6:
+      game.wordbank = gen6Pokemon;
+      break;
+    case 7:
+      game.wordbank = gen7Pokemon;
+      break;
+    case 8:
+      game.wordbank = gen8Pokemon;
+      break;
+    case 9:
+      game.wordbank = gen9Pokemon;
+      break;
+  }
+};
+//sets the textarea to underscores for how long the picked word is
+function setupWord(pokemonName){
+for (let i=0; i<game.word.length; i++){
+game.guessTextArea.append("_");
+}
+}
+
+
+function search(){
   
+}
 
-    // Event listeners for dropdown items
-    game.dropdownMenu.on("click", ".dropdown-item", function(event) {
-    
-        game.handleDropdownChange(event);
-      
-    });
+function updateLives(){
+  if (game.lives <1){
+    game.switchScreen('#game-over-screen');
+    game.isRunning = false;
+  }
+
+}
 
 
 
+/* 
+play again on click:
+storeWords()
+chooseword()
+setupWord()
+game.setLives
+switchscreen(main)
+
+
+
+
+*/ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-----------------------------------------event listeners---------------------------------------------------------------------------- */
+game.dropdownMenu.on("click", ".dropdown-item", function (event) {
+  game.handleDropdownChange(event);
+});
+
+
+//updates player name, is disabled if there is no text. the form is hidden once name is added
 game.joinGameButton.on('click', function () {
   if (!(playerOne.name)) {
     const playerName = game.playerForm.val();
@@ -182,23 +356,31 @@ game.joinGameButton.on('click', function () {
 
     game.joinGameButton.addClass('disabled');
     game.startGameButton.removeClass('disabled');
-    game.playerForm.val('null');
+    game.playerForm.addClass('hidden');
+
   }
 })
 
 
 
+//switches to main, and starts the game
+game.startGameButton.on('click', function () {
+  game.switchScreen('#main-screen');
+  game.isRunning = true;
+  start();
+
+})
+game.exitButton.on('click', function (){
+game.switchScreen('#splash-screen');
+game.isRunning = false;
+})
 
 
-
-
-
-
-
+//enables the join game button once name is added
 game.playerForm.on('keyup', function (event) {
 
   if (game.playerForm.val() !== 'null') {
-      game.joinGameButton.removeClass('disabled');
+    game.joinGameButton.removeClass('disabled');
   }
 });
 
@@ -206,30 +388,27 @@ game.playerForm.on('keyup', function (event) {
 
 //ask abt this, make it into one function
 
-$('#btn-radio-easy').on('click', function() {
-game.setDifficulty('easy');
+$('#btn-radio-easy').on('click', function () {
+  game.setDifficulty('easy');
 
 });
 
 
-$('#btn-radio-medium').on('click', function() {
+$('#btn-radio-medium').on('click', function () {
   game.setDifficulty('medium');
-  
-  })
+
+})
 
 
-  $('#btn-radio-hard').on('click', function() {
-    game.setDifficulty('hard');
-    
-    })
+$('#btn-radio-hard').on('click', function () {
+  game.setDifficulty('hard');
+
+})
+
+
+game.alphabetButtons.on("click", ".letter-button", function (event) {
+  game.handleLetterClick(event);
+});
 
 
 
-
-
-
-    //changing generation
-
-
-    
-    // Event listener for dropdown change

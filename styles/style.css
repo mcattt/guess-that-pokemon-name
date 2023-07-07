@@ -1,4 +1,4 @@
-#splash-screen{
+.screen{
     position: absolute;
 top: 10%;
 left: 15%;
@@ -20,7 +20,7 @@ height: 80%;
 h2{
     margin-top: 50px;
 }
-#rules-button{
+.button-wrap{
     margin-top: 50px;
     margin-right: 50px;
     float: right;
@@ -37,4 +37,22 @@ h2{
 
 .lives-wrap{
     float: left;
+}
+
+.hidden{
+    display: none;
+}
+
+
+.guess-wrapper{
+    margin: 0 auto;
+  position: relative;
+  top: 40%;
+    left:20%;
+}
+
+
+.guesses-textarea{
+font-size: 5rem;
+    letter-spacing: 15px;
 }
