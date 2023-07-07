@@ -25,13 +25,13 @@
         <button type="button" class="btn btn-secondary disabled start-game-button">Play</button>
 
         <div class="btn-group difficulty-buttons" role="group" aria-label="Basic radio toggle button group">
-          <input type="radio" class="btn-check" name="btnradio" id="btn-radio-easy" autocomplete="off" checked>
-          <label class="btn btn-primary" for="btn-radio-easy">Easy</label>
+          <input type="radio"  class="btn-check btn-radio-easy" name="btnradio" id="btn-radio-easy" autocomplete="off" checked>
+          <label class="btn btn-primary" for="btn-radio-easy" >Easy</label>
 
-          <input type="radio" class="btn-check" name="btnradio" id="btn-radio-medium" autocomplete="off">
+          <input type="radio" class="btn-check btn-radio-medium" name="btnradio"  id="btn-radio-medium" autocomplete="off">
           <label class="btn btn-primary" for="btn-radio-medium">Medium</label>
 
-          <input type="radio" class="btn-check" name="btnradio" id="btn-radio-hard" autocomplete="off">
+          <input type="radio" class="btn-check btn-radio-hard" name="btnradio" id="btn-radio-hard"autocomplete="off">
           <label class="btn btn-primary" for="btn-radio-hard">Hard</label>
         </div>
 
@@ -39,7 +39,7 @@
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" id="dropdown-toggle" type="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            Dropdown button
+            Generation 1
           </button>
           <!-- make scrollable! -->
           <ul class="dropdown-menu">
@@ -59,7 +59,7 @@
      </section>
       <section class="screen" id="main-screen"  style="display: none;">
         <div class="lives-wrap">
-          <p id="lives-text">Lives: </p>
+          <p id="lives-text">Lives: <span id="lives-left"> </span> </p>
         </div>
         <div id="buttons-wrap-main" class="button-wrap">
           <button type="button" class="btn btn-info" id="rules-button-main">Rules</button>
@@ -98,12 +98,49 @@
           <button class="letter-button">Z</button>
     
       </div>
+      
       </section>
       <section class = "screen" id="game-over-screen" style="display: none;">
 <h2>You lost </h2>
-<button type="button" class="btn btn-secondary start-game-button">Play again</button>
+
+
+<button type="button" class="btn btn-secondary play-again-button">Play again</button>
 <button type="button" class="btn btn-info exit-button" >Exit</button>
 
+<div class="btn-group difficulty-buttons" role="group" aria-label="Basic radio toggle button group">
+  <input type="radio" class="btn-check btn-radio-easy" name="btnradio" id="btn-radio-easy1" autocomplete="off" checked>
+  <label class="btn btn-primary btn-radio-easy" for="btn-radio-easy1">Easy</label>
+
+  <input type="radio" class="btn-check btn-radio-medium" name="btnradio"  id="btn-radio-medium1" autocomplete="off">
+  <label class="btn btn-primary btn-radio-medium" for="btn-radio-medium1">Medium</label>
+
+  <input type="radio" class="btn-check btn-radio-hard" name="btnradio" id="btn-radio-hard1" autocomplete="off">
+  <label class="btn btn-primary btn-radio-hard" for="btn-radio-hard1">Hard</label>
+</div>
+
+
+
+
+
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" id="dropdown-toggle" type="button" id="btn-radio-easy2" data-bs-toggle="dropdown"
+    aria-expanded="false">
+    Generation 1
+  </button>
+  <!-- make scrollable! -->
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item">Generation 1</a></li>
+    <li> <a class="dropdown-item">Generation 2</a></li>
+    <li> <a class="dropdown-item">Generation 3</a></li>
+    <li><a class="dropdown-item">Generation 4</a></li>
+    <li> <a class="dropdown-item">Generation 5</a></li>
+    <li> <a class="dropdown-item">Generation 6</a></li>
+    <li> <a class="dropdown-item">Generation 7</a></li>
+    <li> <a class="dropdown-item">Generation 8</a></li>
+    <li> <a class="dropdown-item">Generation 9</a></li>
+  </ul>
+</div>
 
 
 

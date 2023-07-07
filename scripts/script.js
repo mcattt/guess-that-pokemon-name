@@ -137,11 +137,12 @@ const game = {
   isRunning: false,
   playerNameDisplay: $('.player-name-display'),
   joinGameButton: $('.join-game-button'),
+  playAgainButton: $('.play-again-button'),
   exitButton: $('.exit-button'),
   playerForm: $('.player-form'),
   startGameButton: $('.start-game-button'),
   lives: 5,
-  livesLeftText: $('#lives-text'),
+  livesLeftText: $('#lives-left'),
   alphabetButtons: $('.alphabet-wrap'),
 
 
@@ -159,6 +160,7 @@ const game = {
 //stores the selected generation into generationNumber, which then that array of words gets stored in wordBank with function storeWords
   handleDropdownChange: function (event) {
     const selectedOption = $(event.target).text();
+    $('.dropdown-toggle').text(selectedOption);
     const generationNumber = parseInt(selectedOption.split(" ")[1]);
     game.generation = generationNumber;
     console.log("Selected Generation: " + game.generation);
@@ -176,40 +178,79 @@ const game = {
 
 
 //sets the amount of lives based on choice, default is 5
-  setLives() {
-    if (this.currentDifficulty === 'medium') {
-      this.lives = 6;
-    }
-    else if (this.currentDifficulty === 'hard') {
-      this.lives = 7;
-    }
-    this.livesLeftText.append(this.lives);
 
-
-
-  },
  
 
   handleLetterClick(event) {
     const clickedLetter = $(event.target).text();
     game.guess.push(clickedLetter);
     $(event.target).prop("disabled", true);
-
+    let found = false;
 for( let i=0; i< this.word.length; i++){
   if (clickedLetter.toLowerCase() === game.word[i].toLowerCase()) {
+    found = true;
     const guessTextArray = game.guessTextArea.text().split('');
     guessTextArray[i] = game.word[i];
     game.guessTextArea.text(guessTextArray.join(''));
   }
-else if(clickedLetter.toLowerCase() !== game.word[i].toLowerCase() && i===(this.word.length - 1)){
+  //checks each place in the array if the letter exists, if it gets to the end of the array and it hasnt been found then decrement lives by one
+else if(clickedLetter.toLowerCase() !== game.word[i].toLowerCase() && (i===(this.word.length - 1) && found === false) ){
   this.lives = this.lives-1;
-  updateLives();
-//change the number in the corner
+  this.updateLives();
+
 }
 
   } 
 
+},
+reset: function(){
+  this.word = '';
+  this.guess = [];
+  this.guessTextArea.empty();
+  this.lives = 5;
+  this.setLives();
+  this.alphabetButtons.find('.letter-button').prop('disabled', false);
+  this.updateLives();
+  // maybe put somewhere else?
+  playerOne.name = "";
+  game.playerForm.removeClass('hidden');
+  // game.joinGameButton.removeClass('disabled');
+  game.playerForm.val('');
+  let playerName = '';
+  playerOne.updateName(playerName);
+  game.updatePlayerName(playerName);
+  this.playerNameDisplay.text('');
+  game.startGameButton.addClass('disabled');
+
+
+
+},
+
+ setLives: function() {
+  if (this.currentDifficulty === 'medium') {
+    this.lives = 6;
+  }
+  else if (this.currentDifficulty === 'hard') {
+    this.lives = 7;
+  }
+  this.livesLeftText.text(this.lives);
+
+
+
+},
+
+updateLives:function (){
+  this.livesLeftText.text(this.lives);
+  if (this.lives <1){
+    this.switchScreen('#game-over-screen');
+
+    this.isRunning = false;
+  }
+
 }
+
+
+
 
 
   }
@@ -252,7 +293,7 @@ function start(){
   if (game.isRunning === true){
     storeWords();
     chooseWord();
-    game.setLives();
+  game.setLives();
     setupWord();
   }
 }
@@ -304,30 +345,6 @@ function search(){
   
 }
 
-function updateLives(){
-  if (game.lives <1){
-    game.switchScreen('#game-over-screen');
-    game.isRunning = false;
-  }
-
-}
-
-
-
-/* 
-play again on click:
-storeWords()
-chooseword()
-setupWord()
-game.setLives
-switchscreen(main)
-
-
-
-
-*/ 
-
-
 
 
 
@@ -365,14 +382,19 @@ game.joinGameButton.on('click', function () {
 
 //switches to main, and starts the game
 game.startGameButton.on('click', function () {
-  game.switchScreen('#main-screen');
   game.isRunning = true;
+  game.switchScreen('#main-screen');
+
   start();
 
 })
 game.exitButton.on('click', function (){
 game.switchScreen('#splash-screen');
 game.isRunning = false;
+game.reset();
+game.generation = 1;
+$('.dropdown-toggle').text('Generation 1');
+game.currentDifficulty = "easy"
 })
 
 
@@ -388,19 +410,19 @@ game.playerForm.on('keyup', function (event) {
 
 //ask abt this, make it into one function
 
-$('#btn-radio-easy').on('click', function () {
+$('.btn-radio-easy').on('click', function () {
   game.setDifficulty('easy');
 
 });
 
 
-$('#btn-radio-medium').on('click', function () {
+$('.btn-radio-medium').on('click', function () {
   game.setDifficulty('medium');
 
 })
 
 
-$('#btn-radio-hard').on('click', function () {
+$('.btn-radio-hard').on('click', function () {
   game.setDifficulty('hard');
 
 })
@@ -410,5 +432,16 @@ game.alphabetButtons.on("click", ".letter-button", function (event) {
   game.handleLetterClick(event);
 });
 
+game.playAgainButton.on('click',()=> {
 
+game.isRunning = true;
+game.reset();
+game.switchScreen('#main-screen');
+start();
+
+
+
+
+
+});
 
