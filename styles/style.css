@@ -1,65 +1,118 @@
-.screen{
-    position: absolute;
-top: 10%;
-left: 15%;
-width: 70%;
-height: 80%;
-    margin: 0 auto;
-    background-color: aquamarine;
+@font-face{
+    font-family: PositiveRiver;
+    src: url('PositiveForward.otf') format('opentype');
+    font-style: normal;
+    font-weight: normal;
+
 }
-#options-screen{
+html{
+font-family: 'PositiveRiver' !important;
+
+}
+
+.screen {
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    width: 70%;
+    height: 80%;
+    margin: 0 auto;
+    /* background-color: antiquewhite; */
+    /* background: linear-gradient( rgba(0, 0, 0, 0.5)); */
+    /* z-index: -2; */
+
+}
+
+#video-bg{
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    width: 70%;
+    height: 80%;
+    margin: 0 auto;
+    z-index: -1;
+  
+    object-fit: cover;
+
+
+}
+
+#high-score-wrap{
+width: 100px;
+    background-color: aliceblue;
+
+    text-align: center;
+}
+
+.options-screen {
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 50%;
+    height: 40%;
     margin: 100px auto;
-    background-color: rgb(255, 140, 255);
+    background-color: rgba(255, 123, 0.5, 0.7);
 }
-h2{
-    margin-top: 50px;
+.options-screen h2{
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
+#options-win-lose{
+    margin-top: 48px
+}
+
+
 .button-wrap{
     margin-top: 50px;
     margin-right: 50px;
+
+}
+#rules-wrap{
     float: right;
 }
 
-/* [type='radio'] {
-    display: none; 
-    } */
 
-    .dropdown{
-        position: relative;
-    }
+.dropdown {
+    position: relative;
+}
 
-    .dropdown-menu {
-        max-height: 150px;
-        overflow-y: auto;
-    }
+.dropdown-menu {
+    max-height: 150px;
+    overflow-y: auto;
+}
 
 
 
 
-.lives-wrap{
+.lives-wrap {
     float: left;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
+.guess-wrapper {
+    margin-top: 100px;
+}
 
-.guess-wrapper{
+/* mobile */
+.guesses-textarea {
+    text-align: center;
     margin: 0 auto;
-  position: relative;
-  top: 40%;
-    left:20%;
+    font-size: 10vw;
+    letter-spacing: 15px;
 }
 
 
-.guesses-textarea{
-font-size: 5rem;
-    letter-spacing: 15px;
+
+
+.alphabet-wrap {
+    font-size: 2vw;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 8rem;
+    width: 80%;
 }
