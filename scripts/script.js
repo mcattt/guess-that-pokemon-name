@@ -793,6 +793,7 @@ game.playAgainButton.on('click', () => {
 
 $('.hint-button').on('click', () =>{
 giveHint();
+animateScore();
 checkWin();
 
 
