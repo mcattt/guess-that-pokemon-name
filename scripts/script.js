@@ -274,28 +274,28 @@ const gen8Pokemon = [
   "Impidimp"         // 8 letters
 ];
 const gen9Pokemon = [
-"Klawf",
-"Dolliv",
-"Pawmi",
-"Pawmo",
-"Quaxly",
-"Nacli",
-"Shroodle",
-"Glimmora",
-"Wiglett",
-"Bombirdier",
-"Veluza",
-"Sprigatito",
-"Meowscarada",
-"Annihilape",
-"Mabosstiff",
-"Lechonk",
-"Armarouge",
-"Brambleghast",
-"Scovillain",
-"Quaquaval" 
+  "Klawf",
+  "Dolliv",
+  "Pawmi",
+  "Pawmo",
+  "Quaxly",
+  "Nacli",
+  "Shroodle",
+  "Glimmora",
+  "Wiglett",
+  "Bombirdier",
+  "Veluza",
+  "Sprigatito",
+  "Meowscarada",
+  "Annihilape",
+  "Mabosstiff",
+  "Lechonk",
+  "Armarouge",
+  "Brambleghast",
+  "Scovillain",
+  "Quaquaval"
 
-
+  //comments for length
 
 
 ]
@@ -492,9 +492,9 @@ function revealWord() {
 
 function displayScore() {
   calculateScore(playerOne.score);
-if (game.finalScore <0){
-  game.finalScore = 0;
-}
+  if (game.finalScore < 0) {
+    game.finalScore = 0;
+  }
   $('.final-score-text').text('Your Score: ' + game.finalScore);
 
   if (game.finalScore > $('.high-score-text').text()) {
@@ -575,6 +575,54 @@ function start() {
     setupWord();
   }
 }
+
+
+
+function giveHint() {
+  const guessTextArray = game.guessTextArea.text().split('');
+  let i = Math.floor(Math.random() * game.word.length);
+
+  const letterButtons = $('.letter-button');
+  const letter = game.word[i].toLowerCase(); // Convert the letter to uppercase for matching
+
+  if (guessTextArray[i] === '_') {
+    guessTextArray[i] = game.word[i];
+    game.guessTextArea.text(guessTextArray.join(''));
+//checking if the letter appears more than once
+    for (let j = 0; j < game.word.length; j++) {
+      if (j === i) {
+        continue;
+      }
+      if (game.word[i].toLowerCase() === game.word[j].toLowerCase()) {
+        guessTextArray[j] = game.word[j];
+        game.guessTextArea.text(guessTextArray.join(''));
+      }
+    }
+
+
+    for (let k = 0; k < letterButtons.length; k++) {
+      if (letterButtons[k].textContent.toLowerCase() === letter) {
+        letterButtons[k].disabled = true;
+        console.log('Letter:', letter);
+        break; // Exit the loop after disabling the button
+      }
+    }  
+  } else {
+    giveHint();
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -743,3 +791,15 @@ game.playAgainButton.on('click', () => {
 
 });
 
+$('.hint-button').on('click', () =>{
+giveHint();
+checkWin();
+
+
+})
+
+$(document).ready(function() {
+  $('.btn-radio-easy, .btn-radio-medium, .btn-radio-hard').on('click', function() {
+    $(this).addClass('active').siblings().removeClass('active');
+  });
+});

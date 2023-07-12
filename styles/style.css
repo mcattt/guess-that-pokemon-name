@@ -1,22 +1,26 @@
-@font-face{
+@font-face {
     font-family: 'PositiveRiver';
     src: url('../PositiveForward.otf') format('opentype');
 
 
 }
-body{
-font-family: 'PositiveRiver' !important;
-font-style: normal;
-font-weight: normal;
-font-size: 25px!important;
+
+body {
+    font-family: 'PositiveRiver' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px !important;
 
 }
-h2{
-    font-size: 50px!important;
+
+h2 {
+    font-size: 50px !important;
 }
-.btn{
-font-size: 25px!important;
+
+.btn {
+    font-size: 25px !important;
 }
+
 .screen {
     position: absolute;
     top: 10%;
@@ -28,7 +32,7 @@ font-size: 25px!important;
 
 }
 
-#video-bg{
+#video-bg {
     position: absolute;
     top: 10%;
     left: 15%;
@@ -38,13 +42,10 @@ font-size: 25px!important;
     z-index: -1;
     object-fit: cover;
 }
-/* .player-form{
-  min-height:  10px;
-} */
-#high-score-wrap{
-width: 100px;
-    background-color: aliceblue;
 
+#high-score-wrap {
+    width: 100px;
+    background-color: aliceblue;
     text-align: center;
 }
 
@@ -55,28 +56,33 @@ width: 100px;
     align-items: center;
     justify-content: flex-start;
     width: 50%;
-    height: 40%;
-    margin: 100px auto;
+
+    margin: 0 auto;
     background-color: rgba(255, 123, 0.5, 0.7);
     gap: 10px;
     text-align: center;
 }
-.options-screen h2{
+
+.options-screen h2 {
     margin-top: 20px;
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
 }
-#options-win-lose{
-    margin-top: 178px;
+
+#options-win-lose {
+    margin-top: 75px;
 }
 
 
-.button-wrap{
+.button-wrap {
     float: right;
-margin-top: 10px;
-margin-right: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
 
 }
-#rules-wrap{
+
+#rules-wrap {
+    margin-top: 10px;
+    margin-right: 10px;
     float: right;
 }
 
@@ -99,30 +105,29 @@ margin-right: 10px;
     float: left;
     background-color: aliceblue;
 }
-#lives-text{
+
+#lives-text {
     margin-left: 10px;
     margin-bottom: 0;
 
 }
+
 .hidden {
     display: none;
 }
 
 
 
-.score-wrap{
-margin-top: 100px;
-text-align: center;
-   
+.score-wrap {
+    margin-top: 100px;
+    text-align: center;
+
 }
 
 
-
-
-
 .guess-wrapper {
-    margin-top: 300px;
-    
+
+
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -136,7 +141,7 @@ text-align: center;
     letter-spacing: 15px;
 }
 
-.modal-body{
+.modal-body {
     text-align: center;
 }
 
@@ -149,18 +154,24 @@ text-align: center;
     width: 80%;
 }
 
+.hint-button{
+    width: 90px;
+    left: 10px;
+    margin-top: 47.5px;
+  
+    position: absolute;
+}
 
-
-.score-animation-wrap{
+.score-animation-wrap {
     margin-left: 40%;
-   position: absolute;
+    position: absolute;
 }
 
 
 
 
 
-/* refernced https://stackoverflow.com/questions/30125705/css-how-to-make-an-element-fade-in-and-then-fade-out */
+/* referenced https://stackoverflow.com/questions/30125705/css-how-to-make-an-element-fade-in-and-then-fade-out */
 
 .elementToFadeInAndOut {
     opacity: 0;
@@ -169,6 +180,13 @@ text-align: center;
 
 
 @keyframes fade {
-  0%,100% { opacity: 0 }
-  50% { opacity: 1 }
+
+    0%,
+    100% {
+        opacity: 0
+    }
+
+    50% {
+        opacity: 1
+    }
 }
