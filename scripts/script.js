@@ -107,7 +107,7 @@ const gen3Pokemon = [
   "Metagross"        // 8 letters
 ];
 
-// Generation 4 (Sinnoh)
+
 
 // Generation 4 (Sinnoh)
 const gen4Pokemon = [
@@ -273,6 +273,32 @@ const gen8Pokemon = [
   "Hatterene",       // 9 letters
   "Impidimp"         // 8 letters
 ];
+const gen9Pokemon = [
+"Klawf",
+"Dolliv",
+"Pawmi",
+"Pawmo",
+"Quaxly",
+"Nacli",
+"Shroodle",
+"Glimmora",
+"Wiglett",
+"Bombirdier",
+"Veluza",
+"Sprigatito",
+"Meowscarada",
+"Annihilape",
+"Mabosstiff",
+"Lechonk",
+"Armarouge",
+"Brambleghast",
+"Scovillain",
+"Quaquaval" 
+
+
+
+
+]
 const POINTS_EARNED = 3;
 
 const game = {
@@ -465,13 +491,14 @@ function revealWord() {
 
 
 function displayScore() {
+  calculateScore(playerOne.score);
 if (game.finalScore <0){
   game.finalScore = 0;
 }
   $('.final-score-text').text('Your Score: ' + game.finalScore);
 
   if (game.finalScore > $('.high-score-text').text()) {
-    $('.high-score-text').text(playerOne.finalScore);
+    $('.high-score-text').text(game.finalScore);
   }
 
 }
@@ -505,7 +532,6 @@ function animateScore(current) {
 }
 
 function currentScore() {
-  calculateScore(playerOne.score);
   $('.score-text').text('Score: ' + playerOne.score);
   if (playerOne.score < 0) {
     $('.score-text').text('Score: ' + 0);

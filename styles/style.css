@@ -122,17 +122,23 @@ text-align: center;
 
 .guess-wrapper {
     margin-top: 300px;
+    
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* mobile */
+
 .guesses-textarea {
     text-align: center;
     margin: 0 auto;
-    font-size: 250px;
+    font-size: 8vw;
     letter-spacing: 15px;
 }
 
-
+.modal-body{
+    text-align: center;
+}
 
 
 .alphabet-wrap {
@@ -149,16 +155,12 @@ text-align: center;
     margin-left: 40%;
    position: absolute;
 }
-.score-animation{
-    /* color: rgb(139, 0, 0); */
-}
 
 
 
 
 
-
-
+/* refernced https://stackoverflow.com/questions/30125705/css-how-to-make-an-element-fade-in-and-then-fade-out */
 
 .elementToFadeInAndOut {
     opacity: 0;
