@@ -1,15 +1,22 @@
 @font-face{
-    font-family: PositiveRiver;
-    src: url('PositiveForward.otf') format('opentype');
-    font-style: normal;
-    font-weight: normal;
+    font-family: 'PositiveRiver';
+    src: url('../PositiveForward.otf') format('opentype');
+
 
 }
-html{
+body{
 font-family: 'PositiveRiver' !important;
+font-style: normal;
+font-weight: normal;
+font-size: 25px!important;
 
 }
-
+h2{
+    font-size: 50px!important;
+}
+.btn{
+font-size: 25px!important;
+}
 .screen {
     position: absolute;
     top: 10%;
@@ -17,9 +24,7 @@ font-family: 'PositiveRiver' !important;
     width: 70%;
     height: 80%;
     margin: 0 auto;
-    /* background-color: antiquewhite; */
-    /* background: linear-gradient( rgba(0, 0, 0, 0.5)); */
-    /* z-index: -2; */
+
 
 }
 
@@ -31,12 +36,11 @@ font-family: 'PositiveRiver' !important;
     height: 80%;
     margin: 0 auto;
     z-index: -1;
-  
     object-fit: cover;
-
-
 }
-
+/* .player-form{
+  min-height:  10px;
+} */
 #high-score-wrap{
 width: 100px;
     background-color: aliceblue;
@@ -54,19 +58,22 @@ width: 100px;
     height: 40%;
     margin: 100px auto;
     background-color: rgba(255, 123, 0.5, 0.7);
+    gap: 10px;
+    text-align: center;
 }
 .options-screen h2{
     margin-top: 20px;
     margin-bottom: 50px;
 }
 #options-win-lose{
-    margin-top: 48px
+    margin-top: 178px;
 }
 
 
 .button-wrap{
-    margin-top: 50px;
-    margin-right: 50px;
+    float: right;
+margin-top: 10px;
+margin-right: 10px;
 
 }
 #rules-wrap{
@@ -87,22 +94,41 @@ width: 100px;
 
 
 .lives-wrap {
-    float: left;
-}
+    width: 100px;
 
+    float: left;
+    background-color: aliceblue;
+}
+#lives-text{
+    margin-left: 10px;
+    margin-bottom: 0;
+
+}
 .hidden {
     display: none;
 }
 
+
+
+.score-wrap{
+margin-top: 100px;
+text-align: center;
+   
+}
+
+
+
+
+
 .guess-wrapper {
-    margin-top: 100px;
+    margin-top: 300px;
 }
 
 /* mobile */
 .guesses-textarea {
     text-align: center;
     margin: 0 auto;
-    font-size: 10vw;
+    font-size: 250px;
     letter-spacing: 15px;
 }
 
@@ -115,4 +141,32 @@ width: 100px;
     text-align: center;
     margin-top: 8rem;
     width: 80%;
+}
+
+
+
+.score-animation-wrap{
+    margin-left: 40%;
+   position: absolute;
+}
+.score-animation{
+    /* color: rgb(139, 0, 0); */
+}
+
+
+
+
+
+
+
+
+.elementToFadeInAndOut {
+    opacity: 0;
+    animation: fade 1s linear;
+}
+
+
+@keyframes fade {
+  0%,100% { opacity: 0 }
+  50% { opacity: 1 }
 }

@@ -12,26 +12,69 @@
 
 <body>
   <main>
-    <section class="screen" id="splash-screen"  >
+    <video src="images/background.mp4" autoplay muted loop id="video-bg">
+      <source src="background.mp4" type="video/mp4">
+    </video>
+    <section class="screen" id="splash-screen">
+
+
+
+
+
       <div id="rules-wrap">
-        <button type="button" class="btn btn-info  button-wrap" id="rules-button">Rules</button>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          How to Play
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Help</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                pick your generation and difficulty and guess that pokemon!
+                Easy - 5 lives
+                Medium - 6 lives
+                Hard - 7 lives
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div id="options-screen">
-        <h2>Guess that pokemon (name)</h2>
+      <div id="high-score-wrap">
+        <p>High Score: <span class="high-score-text">0</span></p>
+      </div>
+      <div class="options-screen">
+        <h2>
+          The Pokemon name game
+        </h2>
 
         <p class="player-name-display"> </p>
+
         <textarea class="player-form" placeholder="enter your name.."></textarea>
-        <button type="button" class="btn btn-dark disabled join-game-button">Join</button>
-        <button type="button" class="btn btn-secondary disabled start-game-button">Play</button>
-
+        <div>
+          <button type="button" class="btn btn-dark disabled join-game-button">Join</button>
+          <button type="button" class="btn btn-secondary disabled start-game-button">Play</button>
+        </div>
         <div class="btn-group difficulty-buttons" role="group" aria-label="Basic radio toggle button group">
-          <input type="radio"  class="btn-check btn-radio-easy" name="btnradio" id="btn-radio-easy" autocomplete="off" checked>
-          <label class="btn btn-primary" for="btn-radio-easy" >Easy</label>
+          <input type="radio" class="btn-check btn-radio-easy" name="btnradio" id="btn-radio-easy" autocomplete="off"
+            checked>
+          <label class="btn btn-primary" for="btn-radio-easy">Easy</label>
 
-          <input type="radio" class="btn-check btn-radio-medium" name="btnradio"  id="btn-radio-medium" autocomplete="off">
+          <input type="radio" class="btn-check btn-radio-medium" name="btnradio" id="btn-radio-medium"
+            autocomplete="off">
           <label class="btn btn-primary" for="btn-radio-medium">Medium</label>
 
-          <input type="radio" class="btn-check btn-radio-hard" name="btnradio" id="btn-radio-hard"autocomplete="off">
+          <input type="radio" class="btn-check btn-radio-hard" name="btnradio" id="btn-radio-hard" autocomplete="off">
           <label class="btn btn-primary" for="btn-radio-hard">Hard</label>
         </div>
 
@@ -41,7 +84,7 @@
             aria-expanded="false">
             Generation 1
           </button>
-          <!-- make scrollable! -->
+
           <ul class="dropdown-menu">
             <li><a class="dropdown-item">Generation 1</a></li>
             <li> <a class="dropdown-item">Generation 2</a></li>
@@ -56,95 +99,140 @@
         </div>
 
       </div>
-     </section>
-      <section class="screen" id="main-screen"  style="display: none;">
-        <div class="lives-wrap">
-          <p id="lives-text">Lives: <span id="lives-left"> </span> </p>
+    </section>
+    <section class="screen" id="main-screen" style="display: none;">
+      <div class="lives-wrap">
+        <p id="lives-text">Lives: <span id="lives-left"> </span> </p>
+      </div>
+      <div id="buttons-wrap-main" class="button-wrap">
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#help-modal">
+          How to Play
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="help-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="help-modal-label">Help</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                pick your generation and difficulty and guess that pokemon!
+                Easy - 5 lives
+                Medium - 6 lives
+                Hard - 7 lives
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+              </div>
+            </div>
+          </div>
         </div>
-        <div id="buttons-wrap-main" class="button-wrap">
-          <button type="button" class="btn btn-info" id="rules-button-main">Rules</button>
-          <button type="button" class="btn btn-info exit-button">Exit</button>
-        </div>
-        <div class="guess-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+        <button type="button" class="btn btn-info exit-button">Exit</button>
+
+      </div>
+      <div class="score-wrap"><p class="score-text">Score: 0</p></div>
+      <div class = "score-animation-wrap"><p class="score-animation hidden">text</p></div>
+      <div class="guess-wrapper">
         <p class="guesses-textarea"></p>
       </div>
       <div class="alphabet-wrap">
-      
-          <button class="letter-button">A</button>
-          <button class="letter-button">B</button>
-          <button class="letter-button">C</button>
-          <button class="letter-button">D</button>
-          <button class="letter-button">E</button>
-          <button class="letter-button">F</button>
-          <button class="letter-button">G</button>
-          <button class="letter-button">H</button>
-          <button class="letter-button">I</button>
-          <button class="letter-button">J</button>
-          <button class="letter-button">K</button>
-          <button class="letter-button">L</button>
-          <button class="letter-button">M</button>
-          <button class="letter-button">N</button>
-          <button class="letter-button">O</button>
-          <button class="letter-button">P</button>
-          <button class="letter-button">Q</button>
-          <button class="letter-button">R</button>
-          <button class="letter-button">S</button>
-          <button class="letter-button">T</button>
-          <button class="letter-button">U</button>
-          <button class="letter-button">V</button>
-          <button class="letter-button">W</button>
-          <button class="letter-button">X</button>
-          <button class="letter-button">Y</button>
-          <button class="letter-button">Z</button>
-    
+
+        <button class="letter-button">A</button>
+        <button class="letter-button">B</button>
+        <button class="letter-button">C</button>
+        <button class="letter-button">D</button>
+        <button class="letter-button">E</button>
+        <button class="letter-button">F</button>
+        <button class="letter-button">G</button>
+        <button class="letter-button">H</button>
+        <button class="letter-button">I</button>
+        <button class="letter-button">J</button>
+        <button class="letter-button">K</button>
+        <button class="letter-button">L</button>
+        <button class="letter-button">M</button>
+        <button class="letter-button">N</button>
+        <button class="letter-button">O</button>
+        <button class="letter-button">P</button>
+        <button class="letter-button">Q</button>
+        <button class="letter-button">R</button>
+        <button class="letter-button">S</button>
+        <button class="letter-button">T</button>
+        <button class="letter-button">U</button>
+        <button class="letter-button">V</button>
+        <button class="letter-button">W</button>
+        <button class="letter-button">X</button>
+        <button class="letter-button">Y</button>
+        <button class="letter-button">Z</button>
+
       </div>
-      
-      </section>
-      <section class = "screen" id="game-over-screen" style="display: none;">
-<h2>You lost </h2>
 
+    </section>
+    <section class="screen" id="game-over-screen" style="display: none;">
+      <div class="options-screen" id="options-win-lose">
+      <h2 class="win-lose-text"></h2>
+<p class="word-reveal"></p>
+      <p class="final-score-text"></p>
+      <button type="button" class="btn btn-secondary play-again-button">Play again</button>
+      <button type="button" class="btn btn-info exit-button">Exit</button>
 
-<button type="button" class="btn btn-secondary play-again-button">Play again</button>
-<button type="button" class="btn btn-info exit-button" >Exit</button>
+      <div class="btn-group difficulty-buttons" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check btn-radio-easy" name="btnradio" id="btn-radio-easy1" autocomplete="off"
+          checked>
+        <label class="btn btn-primary btn-radio-easy" for="btn-radio-easy1">Easy</label>
 
-<div class="btn-group difficulty-buttons" role="group" aria-label="Basic radio toggle button group">
-  <input type="radio" class="btn-check btn-radio-easy" name="btnradio" id="btn-radio-easy1" autocomplete="off" checked>
-  <label class="btn btn-primary btn-radio-easy" for="btn-radio-easy1">Easy</label>
+        <input type="radio" class="btn-check btn-radio-medium" name="btnradio" id="btn-radio-medium1"
+          autocomplete="off">
+        <label class="btn btn-primary btn-radio-medium" for="btn-radio-medium1">Medium</label>
 
-  <input type="radio" class="btn-check btn-radio-medium" name="btnradio"  id="btn-radio-medium1" autocomplete="off">
-  <label class="btn btn-primary btn-radio-medium" for="btn-radio-medium1">Medium</label>
-
-  <input type="radio" class="btn-check btn-radio-hard" name="btnradio" id="btn-radio-hard1" autocomplete="off">
-  <label class="btn btn-primary btn-radio-hard" for="btn-radio-hard1">Hard</label>
-</div>
-
-
-
-
-
-
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" id="dropdown-toggle" type="button" id="btn-radio-easy2" data-bs-toggle="dropdown"
-    aria-expanded="false">
-    Generation 1
-  </button>
-  <!-- make scrollable! -->
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item">Generation 1</a></li>
-    <li> <a class="dropdown-item">Generation 2</a></li>
-    <li> <a class="dropdown-item">Generation 3</a></li>
-    <li><a class="dropdown-item">Generation 4</a></li>
-    <li> <a class="dropdown-item">Generation 5</a></li>
-    <li> <a class="dropdown-item">Generation 6</a></li>
-    <li> <a class="dropdown-item">Generation 7</a></li>
-    <li> <a class="dropdown-item">Generation 8</a></li>
-    <li> <a class="dropdown-item">Generation 9</a></li>
-  </ul>
-</div>
+        <input type="radio" class="btn-check btn-radio-hard" name="btnradio" id="btn-radio-hard1" autocomplete="off">
+        <label class="btn btn-primary btn-radio-hard" for="btn-radio-hard1">Hard</label>
+      </div>
+   
 
 
 
-      </section>
+
+
+
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" id="dropdown-toggle" type="button" id="btn-radio-easy2"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Generation 1
+        </button>
+
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item">Generation 1</a></li>
+          <li> <a class="dropdown-item">Generation 2</a></li>
+          <li> <a class="dropdown-item">Generation 3</a></li>
+          <li><a class="dropdown-item">Generation 4</a></li>
+          <li> <a class="dropdown-item">Generation 5</a></li>
+          <li> <a class="dropdown-item">Generation 6</a></li>
+          <li> <a class="dropdown-item">Generation 7</a></li>
+          <li> <a class="dropdown-item">Generation 8</a></li>
+          <li> <a class="dropdown-item">Generation 9</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+    </section>
 
 
 
