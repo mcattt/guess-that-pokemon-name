@@ -273,172 +273,30 @@ const gen8Pokemon = [
   "Hatterene",       // 9 letters
   "Impidimp"         // 8 letters
 ];
+
 const gen9Pokemon = [
-  "Klawf",
-  "Dolliv",
-  "Pawmi",
-  "Pawmo",
-  "Quaxly",
-  "Nacli",
-  "Shroodle",
-  "Glimmora",
-  "Wiglett",
-  "Bombirdier",
-  "Veluza",
-  "Sprigatito",
-  "Meowscarada",
-  "Annihilape",
-  "Mabosstiff",
-  "Lechonk",
-  "Armarouge",
-  "Brambleghast",
-  "Scovillain",
-  "Quaquaval"
-
-  //comments for length
-
-
-]
+  "Klawf",        // 5 letters
+  "Dolliv",       // 6 letters
+  "Pawmi",        // 5 letters
+  "Pawmo",        // 5 letters
+  "Quaxly",       // 6 letters
+  "Nacli",        // 5 letters
+  "Shroodle",     // 8 letters
+  "Glimmora",     // 8 letters
+  "Wiglett",      // 7 letters
+  "Bombirdier",   // 10 letters
+  "Veluza",       // 6 letters
+  "Sprigatito",   // 11 letters
+  "Meowscarada",  // 12 letters
+  "Annihilape",   // 10 letters
+  "Mabosstiff",   // 10 letters
+  "Lechonk",      // 7 letters
+  "Armarouge",    // 9 letters
+  "Brambleghast", // 12 letters
+  "Scovillain",   // 10 letters
+  "Quaquaval"     // 9 letters
+];
 const POINTS_EARNED = 3;
-
-const game = {
-  word: '',
-  wordbank: [],
-  guess: [],
-  pickedWords: [],
-  guessTextArea: $('.guesses-textarea'),
-  dropdownMenu: $(".dropdown-menu"),
-  difficultyButtons: $('.difficulty-buttons'),
-  currentDifficulty: "easy",
-  generation: 1,
-  isRunning: false,
-  isWon: false,
-  finalScore: 0,
-  playerNameDisplay: $('.player-name-display'),
-  joinGameButton: $('.join-game-button'),
-  playAgainButton: $('.play-again-button'),
-  exitButton: $('.exit-button'),
-  playerForm: $('.player-form'),
-  startGameButton: $('.start-game-button'),
-  lives: 5,
-  livesLeftText: $('#lives-left'),
-  alphabetButtons: $('.alphabet-wrap'),
-
-
-  //sets player name in display
-  updatePlayerName: function (playerName) {
-    this.playerNameDisplay.text("Hello, Trainer " + playerName + "!");
-
-  },
-
-  //sets difficulty
-  setDifficulty: function (difficulty) {
-    this.currentDifficulty = difficulty;
-
-  },
-  //stores the selected generation into generationNumber, which then that array of words gets stored in wordBank with function storeWords
-  handleDropdownChange: function (event) {
-    const selectedOption = $(event.target).text();
-    $('.dropdown-toggle').text(selectedOption);
-    const generationNumber = parseInt(selectedOption.split(" ")[1]);
-    game.generation = generationNumber;
-    console.log("Selected Generation: " + game.generation);
-  },
-
-  //switches to the current screen
-  switchScreen(currentScreen) {
-    $('.screen').hide();
-    // and show current
-    $(currentScreen).show();
-  },
-
-
-
-  handleLetterClick(event) {
-    const clickedLetter = $(event.target).text();
-    game.guess.push(clickedLetter);
-    $(event.target).prop("disabled", true);
-    let found = false;
-    for (let i = 0; i < this.word.length; i++) {
-      if (clickedLetter.toLowerCase() === game.word[i].toLowerCase()) {
-        found = true;
-        const guessTextArray = game.guessTextArea.text().split('');
-        guessTextArray[i] = game.word[i];
-        game.guessTextArea.text(guessTextArray.join(''));
-        playerOne.score += POINTS_EARNED;
-        animateScore(POINTS_EARNED);
-        currentScore();
-        checkWin();
-
-      }
-      //checks each place in the array if the letter exists, if it gets to the end of the array and it hasnt been found then decrement lives by one
-      else if (clickedLetter.toLowerCase() !== game.word[i].toLowerCase() && (i === (this.word.length - 1) && found === false)) {
-        playerOne.score -= 2;
-        animateScore(-2);
-        currentScore();
-        this.lives = this.lives - 1;
-        this.updateLives();
-
-      }
-
-
-
-    }
-
-  },
-  reset: function () {
-
-    this.word = '';
-    this.guess = [];
-    this.pickedWords = [],
-      this.guessTextArea.empty();
-    this.lives = 5;
-    this.setLives();
-    this.alphabetButtons.find('.letter-button').prop('disabled', false);
-    this.updateLives();
-    this.isWon = false;
-    playerOne.score = 0;
-    $('.score-text').text('Score: ' + playerOne.score);
-    this.finalScore = 0;
-    playerOne.name = "";
-    game.playerForm.removeClass('hidden');
-    game.playerForm.val('');
-    let playerName = '';
-    playerOne.updateName(playerName);
-    game.updatePlayerName(playerName);
-    this.playerNameDisplay.text('');
-    game.startGameButton.addClass('disabled');
-    $('.score-animation').addClass('hidden');
-
-
-  },
-
-  setLives: function () {
-    if (this.currentDifficulty === 'medium') {
-      this.lives = 6;
-    }
-    else if (this.currentDifficulty === 'hard') {
-      this.lives = 7;
-    }
-    this.livesLeftText.text(this.lives);
-
-  },
-
-  updateLives: function () {
-    this.livesLeftText.text(this.lives);
-    if (this.lives < 1) {
-      this.switchScreen('#game-over-screen');
-      setText(game.isWon);
-      displayScore();
-      revealWord();
-      this.isRunning = false;
-    }
-
-  },
-
-}
-
-
 
 //player
 const playerOne = {
@@ -450,11 +308,208 @@ const playerOne = {
   }
 }
 
+const game = {
+  word: '',
+  currentDifficulty: "easy",
+  finalScore: 0,
+  generation: 1,
+  lives: 5,
+  isRunning: false,
+  isWon: false,
+  wordbank: [],
+  guess: [],
+  pickedWords: [],
+  hintButton: $('.hint-button'),
+  scoreAnimation: $('.score-animation'),
+  guessTextArea: $('.guesses-textarea'),
+  dropdownMenu: $(".dropdown-menu"),
+  difficultyButtons: $('.difficulty-buttons'),
+  playerNameDisplay: $('.player-name-display'),
+  joinGameButton: $('.join-game-button'),
+  playAgainButton: $('.play-again-button'),
+  exitButton: $('.exit-button'),
+  playerForm: $('.player-form'),
+  startGameButton: $('.start-game-button'),
+  livesLeftText: $('#lives-left'),
+  alphabetButtons: $('.alphabet-wrap'),
+  //sets player name in display
+  updatePlayerName: function (playerName) {
+    this.playerNameDisplay.text("Hello, Trainer " + playerName + "!");
+  },
+  //sets difficulty
+  setDifficulty: function (difficulty) {
+    this.currentDifficulty = difficulty;
+
+  },
+  //switches to the current screen
+  switchScreen(currentScreen) {
+    $('.screen').hide();
+    // and show current
+    $(currentScreen).show();
+  },
+
+  //stores the selected generation into generationNumber, which then that array of words gets stored in wordBank with function storeWords
+  handleDropdownChange: function (event) {
+    const selectedOption = $(event.target).text();
+    $('.dropdown-toggle').text(selectedOption);
+    const generationNumber = parseInt(selectedOption.split(" ")[1]);
+    game.generation = generationNumber;
+    console.log("Selected Generation: " + game.generation);
+  },
+
+  //disables letters once they are guessed, changes the underscores to the guessed letter if it is in the word.
+  //it also checks to see if the letters appears more than once to display it multiple times if needed
+  handleLetterClick(event) {
+    const clickedLetter = $(event.target).text();
+    //pushes into guess variable
+    game.guess.push(clickedLetter);
+    //disables the letter
+    $(event.target).prop("disabled", true);
+    let found = false;
+    for (let i = 0; i < this.word.length; i++) {
+      if (clickedLetter.toLowerCase() === game.word[i].toLowerCase()) {
+        //set to true if found
+        found = true;
+        const guessTextArray = game.guessTextArea.text().split('');
+        guessTextArray[i] = game.word[i];
+        game.guessTextArea.text(guessTextArray.join(''));
+        playerOne.score += POINTS_EARNED;
+        //animates the score
+        animateScore(POINTS_EARNED);
+        //updates the score display text
+        currentScore();
+        //checks if all the letters are guessed
+        checkWin();
+
+      }
+      //checks each place in the array if the letter exists, if it gets to the end of the array and it hasnt been found then decrement lives by one
+      else if (clickedLetter.toLowerCase() !== game.word[i].toLowerCase() && (i === (this.word.length - 1) && found === false)) {
+        playerOne.score -= 2;
+        animateScore(-2);
+        currentScore();
+        this.lives = this.lives - 1;
+        //updates lives display text
+        this.updateLives();
+
+      }
+    }
+
+  },
+  //resets everything back to default settings
+  reset: function () {
+    this.isWon = false;
+    let playerName = '';
+    this.word = '';
+    this.guess = [];
+    this.pickedWords = [],
+      this.guessTextArea.empty();
+    this.finalScore = 0;
+    this.lives = 5;
+    this.setLives();
+    this.playerForm.val('');
+    this.playerNameDisplay.text('');
+    this.alphabetButtons.find('.letter-button').prop('disabled', false);
+    $('.score-text').text('Score: ' + playerOne.score);
+    this.playerForm.removeClass('hidden');
+    this.startGameButton.addClass('disabled');
+    this.scoreAnimation.addClass('hidden');
+    playerOne.score = 0;
+    playerOne.name = '';
+    currentScore();
+  },
+  //sets the lives at initialization of the game
+  setLives: function () {
+    if (this.currentDifficulty === 'medium') {
+      this.lives = 6;
+    }
+    else if (this.currentDifficulty === 'hard') {
+      this.lives = 7;
+    }
+    //sets lives left display
+    this.updateLives();
+  },
+  //updates lives display as they are lost, and checks if lives are at zero where it ends the game
+  updateLives: function () {
+    this.livesLeftText.text(this.lives);
+    if (this.lives < 1) {
+      this.switchScreen('#game-over-screen');
+      setText();
+      this.isRunning = false;
+    }
+
+  },
+
+  setupWord: function () {
+
+    //sets the wordbank of possible options to the selection generation
+    switch (this.generation) {
+      case 1:
+        this.wordbank = gen1Pokemon;
+        break;
+      case 2:
+        this.wordbank = gen2Pokemon;
+        break;
+      case 3:
+        this.wordbank = gen3Pokemon;
+        break;
+      case 4:
+        this.wordbank = gen4Pokemon;
+        break;
+      case 5:
+        this.wordbank = gen5Pokemon;
+        break;
+      case 6:
+        this.wordbank = gen6Pokemon;
+        break;
+      case 7:
+        this.wordbank = gen7Pokemon;
+        break;
+      case 8:
+        this.wordbank = gen8Pokemon;
+        break;
+      case 9:
+        this.wordbank = gen9Pokemon;
+        break;
+    }
+
+    //sets the words with a specific length into another array
+    for (let i = 0; i < this.wordbank.length; i++) {
+      if (this.currentDifficulty === 'hard') {
+        if (this.wordbank[i].length >= 8) {
+          this.pickedWords.push(this.wordbank[i]);
+        }
+      } if (this.currentDifficulty === 'medium') {
+        if (this.wordbank[i].length >= 6 && this.wordbank[i].length <= 7) {
+          this.pickedWords.push(this.wordbank[i]);
+        }
+      } if (this.currentDifficulty === 'easy') {
+        if (this.wordbank[i].length < 6) {
+          this.pickedWords.push(this.wordbank[i]);
+        }
+
+      }
+
+    }
+
+    //randomly picks the word from the pickedWords array and sets it as this.word
+    let num = Math.floor(Math.random() * this.pickedWords.length);
+    this.word = this.pickedWords[num];
 
 
+    //appends underscores to the text area with the same amount of letters as the word
+    for (let i = 0; i < this.word.length; i++) {
+      this.guessTextArea.append("_");
+    }
 
+  }
+
+}
+
+//checks if game is won
 function checkWin() {
+  //automatically set to true
   let won = true;
+  //iterates through word and if any word is still an underscore, won is set to false and it ends the loop
   for (let i = 0; i < game.word.length; i++) {
     if (game.guessTextArea.text()[i].toLowerCase() !== game.word[i].toLowerCase()) {
       won = false;
@@ -463,34 +518,25 @@ function checkWin() {
   }
 
   if (won) {
-    console.log('You win');
     game.isWon = true;
     game.switchScreen('#game-over-screen');
-    setText(game.isWon);
-    displayScore();
-    revealWord();
+    setText();
+    this.isRunning = false;
+
   }
 
 }
 
 
-function setText(winCondition) {
+function setText() {
+  //sets win or lose text
   let text = $('.win-lose-text');
-  if (winCondition === true) {
+  if (game.isWon) {
     text.text('You Win!');
   } else {
     text.text('You Lose :(!');
   }
-}
-
-
-
-function revealWord() {
-  $('.word-reveal').text('The word was ' + game.word);
-}
-
-
-function displayScore() {
+  //sets score text
   calculateScore(playerOne.score);
   if (game.finalScore < 0) {
     game.finalScore = 0;
@@ -500,23 +546,26 @@ function displayScore() {
   if (game.finalScore > $('.high-score-text').text()) {
     $('.high-score-text').text(game.finalScore);
   }
+  //reveals the word
+  $('.word-reveal').text('The word was ' + game.word);
 
 }
 
-const transition = document.querySelector(".score-animation-wrap");
+
+
+//rehides the number once the animation is over
+const transition = $(".score-animation-wrap");
 transition.addEventListener("animationend", () => {
-  $('.score-animation').removeClass('elementToFadeInAndOut');
-  $('.score-animation').addClass('hidden');
+  game.scoreAnimation.removeClass('elementToFadeInAndOut');
+  game.scoreAnimation.addClass('hidden');
 });
 
 
-
+//animates the score based on if the player got a correct or incorrect guess, and updates the score display text
 function animateScore(current) {
   if (current === POINTS_EARNED) {
-
     $('.score-animation').text('+3');
     $('.score-animation').css('color', 'green');
-
   }
   else if (current === -2 && playerOne.score > 0) {
     $('.score-animation').text('-2');
@@ -530,7 +579,7 @@ function animateScore(current) {
   $('.score-animation').addClass('elementToFadeInAndOut');
 
 }
-
+//updates the score display text, but wont show if negative. So if player's points are less than 0 it will just show 0
 function currentScore() {
   $('.score-text').text('Score: ' + playerOne.score);
   if (playerOne.score < 0) {
@@ -538,7 +587,7 @@ function currentScore() {
   }
 
 }
-
+//calculates the final score , adding multipliers based off what difficulty was chosen
 function calculateScore(playerScore) {
   if (game.currentDifficulty === 'easy') {
     game.finalScore = playerScore * 1;
@@ -550,161 +599,58 @@ function calculateScore(playerScore) {
 
 }
 
-
-
-
-
-
-// Event listener for dropdown items
-
-
-
-//stores random word from the wordbank
-function chooseWord() {
-  let num = Math.floor(Math.random() * game.pickedWords.length);
-  game.word = game.pickedWords[num];
-}
-
-//sets the word and lives 
+//sets the word and lives and runs the game
 function start() {
   if (game.isRunning === true) {
-    storeWords();
-    sortedWords(game.pickedWords);
-    chooseWord();
+    game.setupWord();
     game.setLives();
-    setupWord();
+
   }
 }
 
 
-
+//gives hint when button is clicked
 function giveHint() {
+  //breaks the text into an array to iterate through to check if the letter has been revealed or not
   const guessTextArray = game.guessTextArea.text().split('');
+  //randomly picks a letter to show
   let i = Math.floor(Math.random() * game.word.length);
-
   const letterButtons = $('.letter-button');
-  const letter = game.word[i].toLowerCase(); // Convert the letter to uppercase for matching
+  const letter = game.word[i].toLowerCase();
 
   if (guessTextArray[i] === '_') {
     guessTextArray[i] = game.word[i];
     game.guessTextArea.text(guessTextArray.join(''));
-//checking if the letter appears more than once
+    //checking if the letter appears more than once
     for (let j = 0; j < game.word.length; j++) {
+      //skips the letter that was just shown
       if (j === i) {
         continue;
       }
       if (game.word[i].toLowerCase() === game.word[j].toLowerCase()) {
+        //shows the letter
         guessTextArray[j] = game.word[j];
+        //then sets text back with updated letters
         game.guessTextArea.text(guessTextArray.join(''));
       }
     }
 
-
+//iterates through array of buttons and disables the one that was shown
     for (let k = 0; k < letterButtons.length; k++) {
       if (letterButtons[k].textContent.toLowerCase() === letter) {
         letterButtons[k].disabled = true;
-        console.log('Letter:', letter);
-        break; // Exit the loop after disabling the button
+        // Exit the loop after disabling the button
+        break; 
       }
-    }  
+    }
   } else {
+    //if index of array has already been shown, rerun the function again
     giveHint();
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//stores the array in wordBank nased on which generation was chosen
-function storeWords() {
-  switch (game.generation) {
-    case 1:
-      game.wordbank = gen1Pokemon;
-      break;
-    case 2:
-      game.wordbank = gen2Pokemon;
-      break;
-    case 3:
-      game.wordbank = gen3Pokemon;
-      break;
-    case 4:
-      game.wordbank = gen4Pokemon;
-      break;
-    case 5:
-      game.wordbank = gen5Pokemon;
-      break;
-    case 6:
-      game.wordbank = gen6Pokemon;
-      break;
-    case 7:
-      game.wordbank = gen7Pokemon;
-      break;
-    case 8:
-      game.wordbank = gen8Pokemon;
-      break;
-    case 9:
-      game.wordbank = gen9Pokemon;
-      break;
-  }
-}
-
-
-function sortedWords(wordArray) {
-  // let wordArray = new Array();
-  for (let i = 0; i < game.wordbank.length; i++) {
-    if (game.currentDifficulty === 'hard') {
-      if (game.wordbank[i].length >= 8) {
-        wordArray.push(game.wordbank[i]);
-
-      }
-    } if (game.currentDifficulty === 'medium') {
-      if (game.wordbank[i].length >= 6 && game.wordbank[i].length <= 7) {
-        wordArray.push(game.wordbank[i]);
-
-
-
-      }
-
-    } if (game.currentDifficulty === 'easy') {
-      if (game.wordbank[i].length < 6) {
-        wordArray.push(game.wordbank[i]);
-
-
-
-      }
-
-    }
-
-
-
-
-  }
-}
-
-
-
-//sets the textarea to underscores for how long the picked word is
-function setupWord() {
-  for (let i = 0; i < game.word.length; i++) {
-    game.guessTextArea.append("_");
-  }
-}
-
-
-
 /*-----------------------------------------event listeners---------------------------------------------------------------------------- */
+//calls the handleDropdownChange method when a generation is chosen
 game.dropdownMenu.on("click", ".dropdown-item", function (event) {
   game.handleDropdownChange(event);
 });
@@ -713,27 +659,36 @@ game.dropdownMenu.on("click", ".dropdown-item", function (event) {
 //updates player name, is disabled if there is no text. the form is hidden once name is added
 game.joinGameButton.on('click', function () {
   if (!(playerOne.name)) {
+    //updates playerName 
     const playerName = game.playerForm.val();
     playerOne.updateName(playerName);
     game.updatePlayerName(playerName);
-
+    //disables the join button and enables the start button, then hides the player form
     game.joinGameButton.addClass('disabled');
     game.startGameButton.removeClass('disabled');
     game.playerForm.addClass('hidden');
 
   }
 })
-
-
+//same as above but when enter key is pressed
+game.playerForm.on('keypress', function (e) {
+  if (e.which == 13) {
+    const playerName = game.playerForm.val();
+    playerOne.updateName(playerName);
+    game.updatePlayerName(playerName);
+    game.joinGameButton.addClass('disabled');
+    game.startGameButton.removeClass('disabled');
+    game.playerForm.addClass('hidden');
+  }
+});
 
 //switches to main, and starts the game
 game.startGameButton.on('click', function () {
   game.isRunning = true;
   game.switchScreen('#main-screen');
-
   start();
-
 })
+//switches game back to splash screen and resets all to default
 game.exitButton.on('click', function () {
   game.switchScreen('#splash-screen');
   game.isRunning = false;
@@ -746,61 +701,48 @@ game.exitButton.on('click', function () {
 
 //enables the join game button once name is added
 game.playerForm.on('keyup', function (event) {
-
   if (game.playerForm.val() !== 'null') {
     game.joinGameButton.removeClass('disabled');
   }
 });
 
-
-
-//ask abt this, make it into one function
-
+//sets difficulties
 $('.btn-radio-easy').on('click', function () {
   game.setDifficulty('easy');
-
 });
-
 
 $('.btn-radio-medium').on('click', function () {
   game.setDifficulty('medium');
-
 })
-
 
 $('.btn-radio-hard').on('click', function () {
   game.setDifficulty('hard');
-
 })
 
-
+//calls function to handle each letter
 game.alphabetButtons.on("click", ".letter-button", function (event) {
   game.handleLetterClick(event);
 });
 
-game.playAgainButton.on('click', () => {
 
+//play again, resets and starts again
+game.playAgainButton.on('click', () => {
   game.isRunning = true;
   game.reset();
   game.switchScreen('#main-screen');
   start();
-
-
-
-
-
 });
 
-$('.hint-button').on('click', () =>{
-giveHint();
-animateScore();
-checkWin();
-
-
+//gives hint and then checks if every letter has been guessed
+game.hintButton.on('click', () => {
+  giveHint();
+  animateScore();
+  checkWin();
 })
 
-$(document).ready(function() {
-  $('.btn-radio-easy, .btn-radio-medium, .btn-radio-hard').on('click', function() {
+//sets whatever difficulty chosen to be active, automatically sets easy on game load
+$(document).ready(function () {
+  $('.btn-radio-easy, .btn-radio-medium, .btn-radio-hard').on('click', function () {
     $(this).addClass('active').siblings().removeClass('active');
   });
 });
