@@ -5,42 +5,49 @@
 
 }
 
+
 body {
     font-family: 'PositiveRiver' !important;
     font-style: normal;
     font-weight: normal;
-    font-size: 25px !important;
+    font-size: 2.5vw !important;
 
 }
 
 h2 {
-    font-size: 45px !important;
+    font-size: 6vw !important;
 }
 
 .btn {
-    font-size: 20px !important;
+    font-size: 3vw !important;
 }
 
-.screen {
-    position: absolute;
-    top: 10%;
-    left: 15%;
-    width: 70%;
-    height: 80%;
-    margin: 0 auto;
 
 
-}
-.player-form{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.player-form {
     height: 50px;
 }
 
 #video-bg {
     position: absolute;
-    top: 10%;
-    left: 15%;
-    width: 70%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     margin: 0 auto;
     z-index: -1;
     object-fit: cover;
@@ -53,18 +60,44 @@ h2 {
 }
 
 .options-screen {
+
     padding: 20px;
-    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     width: 50%;
-
-    margin: 0 auto;
+    margin: 100px auto;
     background-color: rgba(255, 123, 0.5, 0.7);
     gap: 10px;
     text-align: center;
 }
+
+@media (min-width:48em) {
+
+    body {
+
+        font-size: 25px !important;
+
+    }
+
+    h2 {
+        font-size: 45px !important;
+    }
+
+    .btn {
+        font-size: 20px !important;
+    }
+
+    .options-screen {
+        margin: auto;
+        display: flex;
+
+
+    }
+
+
+}
+
 
 .options-screen h2 {
     margin-top: 20px;
@@ -72,13 +105,17 @@ h2 {
 }
 
 #options-win-lose {
-    margin-top: 75px;
+    position: absolute;
+margin-left: 25%;
+margin-top: 125.5px;
+    
 }
-.win-lose-text-wrap{
+
+.win-lose-text-wrap {
     display: flex;
     flex-direction: column;
-    gap:0;
-    margin-bottom:0 ;
+    gap: 0;
+    margin-bottom: 0;
     line-height: 23px;
 }
 
@@ -129,7 +166,8 @@ h2 {
 
 
 .score-wrap {
-    margin-top: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
     text-align: center;
 
 }
@@ -164,18 +202,30 @@ h2 {
     width: 80%;
 }
 
-.hint-button{
+.hint-button {
     width: 90px;
     left: 10px;
     margin-top: 47.5px;
-  
+
     position: absolute;
 }
 
 .score-animation-wrap {
+    top: 25%;
     margin-left: 40%;
     position: absolute;
 }
+
+
+
+
+
+
+@media (min-width:90em) {}
+
+
+
+
 
 
 
