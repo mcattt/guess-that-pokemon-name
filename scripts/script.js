@@ -521,7 +521,7 @@ function checkWin() {
     game.isWon = true;
     game.switchScreen('#game-over-screen');
     setText();
-    this.isRunning = false;
+    game.isRunning = false;
 
   }
 
@@ -554,7 +554,8 @@ function setText() {
 
 
 //rehides the number once the animation is over
-const transition = $(".score-animation-wrap");
+const transition = document.querySelector(".score-animation-wrap");
+
 transition.addEventListener("animationend", () => {
   game.scoreAnimation.removeClass('elementToFadeInAndOut');
   game.scoreAnimation.addClass('hidden');
