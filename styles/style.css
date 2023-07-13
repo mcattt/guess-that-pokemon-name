@@ -88,7 +88,7 @@ h2 {
 
 @media (min-width:48em) {
     .options-screen {
-        margin: auto;
+
         gap: 10px;
     }
 }
@@ -108,7 +108,7 @@ h2 {
 #options-win-lose {
 position: absolute;
 margin-left: 25%;
-margin-top: 125.5px;
+margin-top: 175px;
 }
 
 .win-lose-text-wrap {
