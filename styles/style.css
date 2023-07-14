@@ -86,6 +86,7 @@ h2 {
     text-align: center;
 }
 
+
 @media (min-width:48em) {
     .options-screen {
         gap: 10px;
@@ -107,8 +108,19 @@ h2 {
 #options-win-lose {
 position: absolute;
 margin-left: 25%;
-margin-top: 175px;
+margin-top: 127.85px;
 }
+@media(min-width: 29.1875em){
+    #options-win-lose{
+        margin-top:156.05px;
+        }
+}
+@media (min-width: 48em) {
+    #options-win-lose{
+        margin-top:175px;
+        }
+}
+
 
 .win-lose-text-wrap {
     display: flex;
