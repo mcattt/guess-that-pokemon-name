@@ -16,7 +16,11 @@ body {
         font-size: 25px !important;
     }
 }
-
+@media (min-width:90em) {
+    body {
+        font-size: 30px !important;
+    }
+}
 h2 {
     font-size: 6vw !important;
 }
@@ -40,7 +44,12 @@ h2 {
         font-size: 20px !important;
     }
 }
-
+@media (min-width:90em) {
+    .btn {
+        font-size: 40px !important;
+    }
+    
+}
 .modal-body {
     text-align: center;
 }
@@ -92,7 +101,11 @@ h2 {
         gap: 10px;
     }
 }
-
+@media (min-width:90em){
+    .options-screen {
+        margin-top: 15rem;
+    }
+}
 .options-screen h2 {
     margin-top: 20px;
 }
@@ -118,6 +131,12 @@ margin-top: 127.85px;
 @media (min-width: 48em) {
     #options-win-lose{
         margin-top:175px;
+        }
+}
+@media (min-width:90em){
+
+    #options-win-lose{
+        margin-top:20rem;
         }
 }
 
@@ -189,12 +208,35 @@ margin-top: 127.85px;
     margin-top: 47.5px;
     position: absolute;
 }
+
+@media (min-width:47.5em) {
+    .hint-button {
+        margin-top: 100px;
+    }
+
+}
+@media (min-width:48em) {
+    .hint-button {
+        margin-top: 47.5px;
+    }
+
+}
+
+@media (min-width:90em) {
+    .hint-button {
+        margin-top: 60px;
+    }
+
+}
+
 /* animation for gaining/losing points */
 .score-animation-wrap {
-    top: 25%;
+    top: 15%;
     margin-left: 40%;
     position: absolute;
 }
+
+
 
 /* referenced https://stackoverflow.com/questions/30125705/css-how-to-make-an-element-fade-in-and-then-fade-out */
 .elementToFadeInAndOut {
