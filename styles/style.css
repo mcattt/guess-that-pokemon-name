@@ -204,30 +204,12 @@ margin-top: 127.85px;
 
 .hint-button {
     width: 90px;
-    left: 10px;
-    margin-top: 47.5px;
+    left: 120px;
+    margin-top: 10px;
     position: absolute;
 }
 
-@media (min-width:47.5em) {
-    .hint-button {
-        margin-top: 100px;
-    }
 
-}
-@media (min-width:48em) {
-    .hint-button {
-        margin-top: 47.5px;
-    }
-
-}
-
-@media (min-width:90em) {
-    .hint-button {
-        margin-top: 60px;
-    }
-
-}
 
 /* animation for gaining/losing points */
 .score-animation-wrap {
