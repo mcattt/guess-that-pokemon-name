@@ -479,11 +479,11 @@ const game = {
           this.pickedWords.push(this.wordbank[i]);
         }
       } if (this.currentDifficulty === 'medium') {
-        if (this.wordbank[i].length >= 6 && this.wordbank[i].length <= 7) {
+        if (this.wordbank[i].length > 6 && this.wordbank[i].length <= 8) {
           this.pickedWords.push(this.wordbank[i]);
         }
       } if (this.currentDifficulty === 'easy') {
-        if (this.wordbank[i].length < 6) {
+        if (this.wordbank[i].length <= 6) {
           this.pickedWords.push(this.wordbank[i]);
         }
 

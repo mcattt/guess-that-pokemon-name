@@ -96,16 +96,12 @@ h2 {
 }
 
 
-@media (min-width:48em) {
+ @media (min-width:48em) {
     .options-screen {
         gap: 10px;
     }
 }
-@media (min-width:90em){
-    .options-screen {
-        margin-top: 15rem;
-    }
-}
+
 .options-screen h2 {
     margin-top: 20px;
 }
@@ -123,23 +119,6 @@ position: absolute;
 margin-left: 25%;
 margin-top: 127.85px;
 }
-@media(min-width: 29.1875em){
-    #options-win-lose{
-        margin-top:156.05px;
-        }
-}
-@media (min-width: 48em) {
-    #options-win-lose{
-        margin-top:175px;
-        }
-}
-@media (min-width:90em){
-
-    #options-win-lose{
-        margin-top:20rem;
-        }
-}
-
 
 .win-lose-text-wrap {
     display: flex;
